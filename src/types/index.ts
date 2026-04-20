@@ -16,6 +16,7 @@ export interface RunnerProfile {
   goal: Goal
   weeklyKm: number
   budget: number        // EUR max
+  preferredBrands: string[]  // empty = no preference
 }
 
 export interface RunningShoe {

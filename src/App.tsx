@@ -28,11 +28,13 @@ export default function App() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
-          <span className="text-2xl">👟</span>
-          <div>
-            <h1 className="text-base font-bold text-gray-900 leading-tight">Running Shoes Advisor</h1>
-            <p className="text-xs text-gray-400">Encuentra la zapatilla perfecta para ti</p>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">👟</span>
+            <span className="text-xl font-black tracking-tight text-gray-900">
+              Busco<span className="text-green-600">tenis</span>
+            </span>
           </div>
+          <p className="text-xs text-gray-400 hidden sm:block">Encuentra la zapatilla perfecta para ti</p>
         </div>
       </header>
 
@@ -46,6 +48,7 @@ export default function App() {
                 Rellena tus datos y te recomendaremos las mejores zapatillas de todas las marcas.
               </p>
             </div>
+
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 sm:p-6">
               <RunnerForm onSubmit={handleSubmit} />
             </div>

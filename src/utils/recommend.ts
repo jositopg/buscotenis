@@ -22,6 +22,8 @@ export function getRecommendations(profile: RunnerProfile): ScoredShoe[] {
   const bmi = getBMI(profile.weight, profile.height)
   const cushioningNeeded = getCushioningNeeded(profile)
 
+  const hasBrandPreference = profile.preferredBrands.length > 0
+
   const scored: ScoredShoe[] = shoes
     .filter(shoe => {
       // Hard filters: terrain must match
@@ -32,11 +34,19 @@ export function getRecommendations(profile: RunnerProfile): ScoredShoe[] {
       if (profile.weight > shoe.weightLimit) return false
       // Hard filter: budget
       if (shoe.price > profile.budget) return false
+      // Soft filter: if brand preference set, exclude other brands
+      if (hasBrandPreference && !profile.preferredBrands.includes(shoe.brand)) return false
       return true
     })
     .map(shoe => {
       let score = 0
       const matchReasons: string[] = []
+
+      // ── Brand preference bonus (0-10) ───────────────────────────────────
+      if (hasBrandPreference && profile.preferredBrands.includes(shoe.brand)) {
+        score += 10
+        matchReasons.push(`Marca preferida: ${shoe.brand}`)
+      }
 
       // ── Foot strike match (0-15) ─────────────────────────────────────────
       if (shoe.footStrike.includes(profile.footStrike)) {

@@ -5,6 +5,12 @@ interface Props {
   onSubmit: (profile: RunnerProfile) => void
 }
 
+const ALL_BRANDS = [
+  'Nike', 'Adidas', 'Brooks', 'ASICS', 'Saucony',
+  'New Balance', 'Hoka', 'On', 'Mizuno', 'Salomon',
+  'Altra', 'Puma', 'Under Armour', 'Scott', 'La Sportiva',
+]
+
 const defaultProfile: RunnerProfile = {
   weight: 70,
   height: 175,
@@ -15,6 +21,7 @@ const defaultProfile: RunnerProfile = {
   goal: 'daily',
   weeklyKm: 20,
   budget: 150,
+  preferredBrands: [],
 }
 
 export default function RunnerForm({ onSubmit }: Props) {
@@ -224,10 +231,43 @@ export default function RunnerForm({ onSubmit }: Props) {
         </div>
       </section>
 
+      {/* ── Preferencia de marca ── */}
+      <section>
+        <h2 className="text-lg font-semibold text-gray-800 mb-1 flex items-center gap-2">
+          <span className="w-7 h-7 rounded-full bg-green-100 text-green-700 text-sm flex items-center justify-center font-bold">5</span>
+          Preferencia de marca
+        </h2>
+        <p className="text-xs text-gray-400 mb-3 ml-9">Opcional — selecciona una o varias. Si no seleccionas ninguna se muestran todas.</p>
+        <div className="flex flex-wrap gap-2">
+          {ALL_BRANDS.map(brand => {
+            const selected = form.preferredBrands.includes(brand)
+            return (
+              <button
+                key={brand}
+                type="button"
+                onClick={() => {
+                  const next = selected
+                    ? form.preferredBrands.filter(b => b !== brand)
+                    : [...form.preferredBrands, brand]
+                  set('preferredBrands', next)
+                }}
+                className={`px-3 py-1.5 rounded-full border text-sm font-medium transition-all ${
+                  selected
+                    ? 'border-green-500 bg-green-50 text-green-700'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                }`}
+              >
+                {selected && <span className="mr-1">✓</span>}{brand}
+              </button>
+            )
+          })}
+        </div>
+      </section>
+
       {/* ── Volumen y presupuesto ── */}
       <section>
         <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-          <span className="w-7 h-7 rounded-full bg-green-100 text-green-700 text-sm flex items-center justify-center font-bold">5</span>
+          <span className="w-7 h-7 rounded-full bg-green-100 text-green-700 text-sm flex items-center justify-center font-bold">6</span>
           Volumen y presupuesto
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
