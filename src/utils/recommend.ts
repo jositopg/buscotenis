@@ -1,4 +1,4 @@
-import { RunnerProfile, RunningShoe, ScoredShoe } from '../types'
+import type { RunnerProfile, RunningShoe, ScoredShoe } from '../types'
 import { shoes } from '../data/shoes'
 
 function getBMI(weight: number, height: number): number {

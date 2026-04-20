@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RunnerProfile, Terrain, Pronation, FootStrike, Level, Goal } from '../types'
+import type { RunnerProfile, Terrain, Pronation, FootStrike, Level, Goal } from '../types'
 
 interface Props {
   onSubmit: (profile: RunnerProfile) => void

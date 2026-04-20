@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import RunnerForm from './components/RunnerForm'
 import Results from './components/Results'
-import { RunnerProfile, ScoredShoe } from './types'
+import type { RunnerProfile, ScoredShoe } from './types'
 import { getRecommendations } from './utils/recommend'
 
 type View = 'form' | 'results'

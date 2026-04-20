@@ -1,4 +1,4 @@
-import { ScoredShoe, RunnerProfile } from '../types'
+import type { ScoredShoe, RunnerProfile } from '../types'
 
 interface Props {
   results: ScoredShoe[]

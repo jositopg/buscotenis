@@ -1,4 +1,4 @@
-import { RunningShoe } from '../types'
+import type { RunningShoe } from '../types'
 
 export const shoes: RunningShoe[] = [
   // ─── NIKE ──────────────────────────────────────────────────────────────────
